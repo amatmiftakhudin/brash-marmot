@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Real-time Slides Tutorial | Show</title>
+  <script src="/socket.io/socket.io.js"></script>
+  
+    <style type="text/css">
+    body {
+      background-image: -webkit-gradient(
+            radial, 
+            50% 50%, 0, 
+            50% 50%, 1000, 
+            from(rgba(245,245,245,1)), 
+            to(rgba(100,100,100,1))
+        );
+      color: #222f3e;
+    }
+      
+    h1, h2, h3, h4, h5, p {
+      margin-bottom: 0px;
+    }
+      
+      img {
+        width: 60%;
+      }
+      
+    h1, h2, h3, h4, h5, p {
+        color: #292929;
+        font-family: 'League Gothic', sans-serif;
+        letter-spacing: -5px;
+        margin-top: 0;
+        text-shadow: 5px 3px 0 white;
+        line-height: 1em;
+        margin: 0;
+    }
+      
+      h1 {
+        font-size: 120px;
+      }
+      
+      p {
+        font-size: 120px;
+      }
+      
+      h2 {
+        font-size: 80px;
+      }
+    #slide {
+      margin: auto;
+      height: 60%;
+      width: 80%;
+      position: fixed;
+      top:0;
+      bottom:0;
+      left:0;
+      right:0;
+      font-size: 5vmin;
+      display: inline-block;
+      
+    }
+      
+      #content {
+        width: 200px;
+        height: 100px;
+      }
+      
+      #slide.fadeIn {
+        opacity: 1;
+        transition: opacity 1s;        
+      }
+
+
+      #slide.fade {
+        opacity: 0;
+      }
+  </style>
+</head>
+<body>
+  
+  <div id="content">
+    <div id="slide">
+      <h2>Amat Miftakhudin<br>amat@klob ⏱</h2>
+    </div>
+  </div>
+  <script type="text/javascript">
+    const socket = io();
+    socket.on('update slide', (html) => {
+      document.querySelector('#slide').classList.toggle('fade');
+      document.querySelector('#slide').innerHTML = html;
+      document.querySelector('#slide').classList.toggle('fadeIn');
+    });
+  </script>
+</body>
+</html>
